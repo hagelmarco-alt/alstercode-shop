@@ -19,7 +19,6 @@ import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const downloads = join(root, "public", "downloads");
-mkdirSync(downloads, { recursive: true });
 
 const navy = "1E3A5F";
 const blue = "2B4C7E";
@@ -456,7 +455,7 @@ export async function generateDocs() {
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
-if (isMain) {
+ if (isMain) {
   await generateDocs();
   console.log("Documents generated.");
 }
