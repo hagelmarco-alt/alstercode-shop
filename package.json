@@ -8,8 +8,7 @@
     "start": "next start --port 43127",
     "lint": "eslint",
     "generate:docs": "node scripts/generate-docs.mjs",
-    "generate:pack": "node scripts/generate-pack.mjs",
-    "prebuild": "node scripts/generate-docs.mjs"
+    "generate:pack": "node scripts/generate-pack.mjs"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
