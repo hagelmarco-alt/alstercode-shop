@@ -11,7 +11,7 @@ export async function GET() {
     zip.file(name, data);
   }
   const body = await zip.generateAsync({ type: "uint8array" });
-  return new Response(Buffer.from(body), {
+  return new Response(body, {
     headers: {
       "Content-Type": "application/zip",
       "Content-Disposition":

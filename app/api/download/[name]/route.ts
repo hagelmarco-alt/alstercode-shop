@@ -30,7 +30,7 @@ export async function GET(
     return NextResponse.json({ error: "Datei nicht gefunden." }, { status: 404 });
   }
 
-  return new Response(body, {
+  return new Response(new Uint8Array(body), {
     headers: {
       "Content-Type": type,
       "Content-Disposition": `attachment; filename="${name}"`,
