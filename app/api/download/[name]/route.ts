@@ -24,7 +24,7 @@ export async function GET(
     return NextResponse.json({ error: "Datei nicht gefunden." }, { status: 404 });
   }
 
-  const files = (await getPackFiles()) as Record<string, Buffer>;
+  const files = await getPackFiles();
   const body = files[name];
   if (!body) {
     return NextResponse.json({ error: "Datei nicht gefunden." }, { status: 404 });
