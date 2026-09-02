@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <title>Muster-Rechnung</title>
+    <style>
+      @page {
+        size: A4;
+        margin: 0;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #fff;
+      }
+      body {
+        width: 210mm;
+        min-height: 297mm;
+        font-family: "Source Sans 3", "Segoe UI", Helvetica, Arial, sans-serif;
+        color: #2c3e50;
+        position: relative;
+      }
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        padding: 16mm 18mm 14mm;
+        position: relative;
+        overflow: hidden;
+      }
+      .watermark {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .watermark span {
+        font-size: 92px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        color: rgba(192, 57, 43, 0.11);
+        transform: rotate(-32deg);
+      }
+      .content {
+        position: relative;
+        z-index: 1;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 24px;
+      }
+      .brand {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      .mark {
+        width: 36px;
+        height: 36px;
+        border: 2px solid #2b4c7e;
+        color: #1e3a5f;
+        display: grid;
+        place-items: center;
+        font-family: "Source Serif 4", Georgia, serif;
+        font-size: 22px;
+        font-weight: 700;
+      }
+      .brand-name {
+        font-family: "Source Serif 4", Georgia, serif;
+        font-size: 26px;
+        font-weight: 700;
+        color: #2b4c7e;
+        line-height: 1;
+      }
+      .brand-sub {
+        margin-top: 4px;
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        color: #7a8694;
+      }
+      .sender-contact {
+        text-align: right;
+        font-size: 11px;
+        line-height: 1.55;
+        color: #6b7580;
+      }
+      .meta-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 32px;
+        margin-top: 28px;
+      }
+      .return-line {
+        font-size: 8.5px;
+        color: #6b7580;
+        border-bottom: 1px solid #2c3e50;
+        padding-bottom: 2px;
+        margin-bottom: 8px;
+        width: 72mm;
+      }
+      .address {
+        font-size: 12px;
+        line-height: 1.45;
+      }
+      .meta {
+        min-width: 68mm;
+        font-size: 11px;
+        line-height: 1.7;
+      }
+      .meta strong {
+        display: inline-block;
+        min-width: 34mm;
+        color: #5c6770;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        font-size: 10px;
+      }
+      h1 {
+        margin: 28px 0 10px;
+        font-family: "Source Serif 4", Georgia, serif;
+        font-size: 26px;
+        color: #2b4c7e;
+        font-weight: 700;
+      }
+      .salutation {
+        font-size: 12.5px;
+        line-height: 1.55;
+        margin-bottom: 16px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 11.5px;
+      }
+      th {
+        text-align: left;
+        font-size: 10px;
+        letter-spacing: 0.06em;
+        color: #5c6770;
+        border-bottom: 1px solid #2c3e50;
+        padding: 0 0 6px;
+      }
+      td {
+        padding: 10px 0;
+        border-bottom: 1px solid #d7dde3;
+        vertical-align: top;
+      }
+      .num,
+      .right {
+        text-align: right;
+      }
+      tfoot td {
+        border-bottom: none;
+        padding-top: 12px;
+        font-weight: 700;
+        font-size: 13px;
+      }
+      .legal {
+        margin-top: 16px;
+        background: #f1f3f5;
+        padding: 10px 12px;
+        font-size: 11px;
+        line-height: 1.45;
+        color: #3d4852;
+      }
+      .pay h2 {
+        margin: 22px 0 8px;
+        font-size: 12px;
+        letter-spacing: 0.12em;
+      }
+      .pay p,
+      .pay li {
+        font-size: 12px;
+        line-height: 1.5;
+      }
+      .pay ul {
+        list-style: none;
+        padding: 0;
+        margin: 8px 0 12px;
+      }
+      footer {
+        position: absolute;
+        left: 18mm;
+        right: 18mm;
+        bottom: 10mm;
+        display: flex;
+        justify-content: space-between;
+        font-size: 9.5px;
+        color: #7a8694;
+        line-height: 1.45;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="watermark"><span>MUSTER</span></div>
+      <div class="content">
+        <header>
+          <div class="brand">
+            <div class="mark">S</div>
+            <div>
+              <div class="brand-name">Mira Soltau</div>
+              <div class="brand-sub">SATZ UND TEXT</div>
+            </div>
+          </div>
+          <div class="sender-contact">
+            Keplerweg 14<br />
+            99084 Musterstadt<br />
+            Tel. 0361 00000-00<br />
+            post@soltau-text.example<br />
+            soltau-text.example
+          </div>
+        </header>
+
+        <div class="meta-row">
+          <div>
+            <div class="return-line">
+              Mira Soltau · Keplerweg 14 · 99084 Musterstadt
+            </div>
+            <div class="address">
+              Beispielbau GmbH<br />
+              Frau Inge Beispiel<br />
+              Industriestraße 8<br />
+              12345 Musterstadt
+            </div>
+          </div>
+          <div class="meta">
+            <div><strong>RECHNUNGSNR.</strong> 2026-008</div>
+            <div><strong>DATUM</strong> 10.08.2026</div>
+            <div><strong>LEISTUNGSZEITRAUM</strong> 28.07.2026 – 07.08.2026</div>
+            <div><strong>ZAHLUNGSZIEL</strong> 24.08.2026</div>
+            <div><strong>KUNDENUMMER</strong> K-1042</div>
+            <div><strong>STEUERNUMMER</strong> 156/208/12345</div>
+          </div>
+        </div>
+
+        <h1>Rechnung 2026-008</h1>
+        <p class="salutation">
+          Sehr geehrte Damen und Herren,<br /><br />
+          für die nachstehend aufgeführten Leistungen erlaube ich mir, wie folgt
+          zu berechnen.
+        </p>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 10mm">POS.</th>
+              <th>BEZEICHNUNG</th>
+              <th class="num" style="width: 16mm">MENGE</th>
+              <th style="width: 18mm">EINHEIT</th>
+              <th class="num" style="width: 28mm">EINZELPREIS EUR</th>
+              <th class="num" style="width: 24mm">BETRAG EUR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>
+                Website-Texte Startseite und Leistungsseite,<br />
+                inkl. zwei Korrekturläufen
+              </td>
+              <td class="num">1</td>
+              <td>Pauschale</td>
+              <td class="num">180,00</td>
+              <td class="num">180,00</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Kurzfassung für Suchmaschinen-Snippets</td>
+              <td class="num">4</td>
+              <td>Stück</td>
+              <td class="num">30,00</td>
+              <td class="num">120,00</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5">Gesamtbetrag</td>
+              <td class="num">300,00 EUR</td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <div class="legal">
+          <strong>Kein Ausweis von Umsatzsteuer.</strong> Für diese Leistung
+          gilt die Steuerbefreiung für Kleinunternehmer gemäß § 19 UStG. Ein
+          Vorsteuerabzug beim Leistungsempfänger ist aus dieser Rechnung nicht
+          möglich.
+        </div>
+
+        <section class="pay">
+          <h2>ZAHLUNG</h2>
+          <p>
+            Bitte überweisen Sie den Gesamtbetrag bis zum
+            <strong>24.08.2026</strong> unter Angabe der Rechnungsnummer als
+            Verwendungszweck auf folgendes Konto:
+          </p>
+          <ul>
+            <li>Kontoinhaber: Mira Soltau</li>
+            <li>IBAN: DE00 0000 0000 0000 0000 00</li>
+            <li>BIC: MUSTDEFFXXX</li>
+            <li>Kreditinstitut: Musterbank AG</li>
+            <li>Verwendungszweck: 2026-008</li>
+          </ul>
+          <p>Vielen Dank für Ihren Auftrag.</p>
+        </section>
+      </div>
+      <footer>
+        <div>
+          Mira Soltau · Keplerweg 14 · 99084 Musterstadt<br />
+          Steuernummer: 156/208/12345 · Kleinunternehmer-IdNr.: — · USt-IdNr.: —
+        </div>
+        <div style="text-align: right">
+          Seite 1<br />
+          Kleinunternehmer gemäß § 19 UStG
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
