@@ -13,7 +13,8 @@ Anbieter: Marco Hagel, Laukamp 7, 22417 Hamburg, hagel@alstercode-ai.de.
 - Optional: Beleg an hagel@alstercode-ai.de; ausgefülltes Pack per E-Mail
 
 Extra-SKUs liegen unter `/#weitere-vorlagen`, Kauf unter `/kaufen/ACK-…` bzw. `/produkt/[slug]`.
-Die Archive stehen in `content/packs/` und werden über `/api/extra/[slug]` ausgeliefert.
+Unter `content/packs/` liegen Minimal-Packs (LIESMICH + Platzhalter); volle HTML-Archive folgen später.
+Auslieferung nur über `/api/extra/[slug]`, nicht über `public/`.
 
 Kein Abo. Keine Stripe-Anbindung. Kein Tracking über das technisch Nötige hinaus. Keine Rechts- oder Steuerberatung.
 
