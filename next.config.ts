@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  outputFileTracingIncludes: {
+    "/api/extra/**": ["./content/packs/**/*"],
+  },
 };
 
 export default nextConfig;

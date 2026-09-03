@@ -1,6 +1,7 @@
 # ALSTERCODE Shop
 
-Kleiner Verkauf für das Kleinunternehmer-Pack: Rechnung und Zahlungserinnerung nach § 19 UStG.
+Kleiner Verkauf für das Kleinunternehmer-Pack (ACK-KU-12, 12 €) und 14 Extra-Vorlagen.
+Zahlung über PayPal.me, Download auf Vertrauensbasis. Kurztext bleibt 49 €.
 
 Anbieter: Marco Hagel, Laukamp 7, 22417 Hamburg, hagel@alstercode-ai.de.
 
@@ -11,7 +12,11 @@ Anbieter: Marco Hagel, Laukamp 7, 22417 Hamburg, hagel@alstercode-ai.de.
 - Sofort-Download der Musterdateien auf der Kaufseite (nach Widerrufs-Zustimmung)
 - Optional: Beleg an hagel@alstercode-ai.de; ausgefülltes Pack per E-Mail
 
-Kein Abo. Keine Stripe-Anbindung. Kein Tracking über das technisch Nötige hinaus.
+Extra-SKUs liegen unter `/#weitere-vorlagen`, Kauf unter `/kaufen/ACK-…` bzw. `/produkt/[slug]`.
+Unter `content/packs/` liegen Minimal-Packs (LIESMICH + Platzhalter); volle HTML-Archive folgen später.
+Auslieferung nur über `/api/extra/[slug]`, nicht über `public/`.
+
+Kein Abo. Keine Stripe-Anbindung. Kein Tracking über das technisch Nötige hinaus. Keine Rechts- oder Steuerberatung.
 
 ## Lokal starten
 

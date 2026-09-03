@@ -20,6 +20,9 @@ export function SiteFooter() {
           <p>Kleinunternehmer gemäß § 19 UStG. Kein Ausweis von Umsatzsteuer.</p>
         </div>
         <nav className="flex flex-wrap gap-x-4 gap-y-2">
+          <Link href="/#weitere-vorlagen" className="hover:text-foreground">
+            Weitere Vorlagen
+          </Link>
           <Link href="/impressum" className="hover:text-foreground">
             Impressum
           </Link>

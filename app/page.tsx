@@ -1,9 +1,11 @@
 import Link from "next/link";
 
 import { DocumentPreview } from "@/components/document-preview";
+import { ExtraDisclaimer } from "@/components/extra-disclaimer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { extraProducts, formatEuro } from "@/lib/products";
 import { site } from "@/lib/site";
 
 export default function HomePage() {
@@ -99,6 +101,50 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section id="weitere-vorlagen" className="border-t">
+        <div className="mx-auto w-full max-w-5xl px-4 py-14 sm:px-6">
+          <h2 className="font-heading text-3xl font-semibold text-primary">
+            Weitere Vorlagen
+          </h2>
+          <p className="mt-3 max-w-2xl text-base leading-7 text-muted-foreground">
+            Vierzehn Extra-Pakete zum Sofort-Download. Derselbe Ablauf wie beim
+            Kleinunternehmer-Pack: Widerruf, PayPal.me/alstercode, Datei auf
+            Vertrauensbasis. Das Pack {site.packSku} und der Kurztext für{" "}
+            {site.kurztextPrice} bleiben unverändert.
+          </p>
+          <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+            {extraProducts.map((product) => (
+              <li key={product.sku}>
+                <Card size="sm" className="h-full">
+                  <CardContent className="flex h-full flex-col gap-3">
+                    <p className="text-xs tracking-wide text-muted-foreground uppercase">
+                      {product.sku}
+                    </p>
+                    <h3 className="font-heading text-base font-semibold text-primary">
+                      {product.title}
+                    </h3>
+                    <p className="text-sm leading-6 text-muted-foreground">
+                      {product.description}
+                    </p>
+                    <div className="mt-auto flex items-center justify-between gap-3 pt-1">
+                      <p className="font-heading text-lg font-semibold text-primary">
+                        {formatEuro(product.priceEuro)}
+                      </p>
+                      <Button size="sm" asChild>
+                        <Link href={`/kaufen/${product.sku}`}>Kaufen</Link>
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-8 max-w-2xl">
+            <ExtraDisclaimer draftAid />
+          </div>
+        </div>
+      </section>
+
       <section className="border-t bg-muted/30">
         <div className="mx-auto grid w-full max-w-5xl gap-8 px-4 py-14 sm:px-6 lg:grid-cols-2">
           <div>
@@ -121,9 +167,10 @@ export default function HomePage() {
               Was dieser Shop nicht ist
             </h2>
             <p className="mt-3 text-[15px] leading-7 text-muted-foreground">
-              Keine Steuerberatung, keine Buchhaltung, kein Abo. Die Vorlagen
-              sind Muster. Ob § 19 UStG für Sie gilt, prüfen Sie selbst oder
-              mit Ihrer Steuerberatung.
+              Keine Steuerberatung, keine Rechtsberatung, keine Buchhaltung,
+              kein Abo. Die Vorlagen sind Muster mit erfundenen
+              Musterstadt-Daten. AGB und NDA sind Entwurfshilfen. Ob § 19 UStG
+              für Sie gilt, prüfen Sie selbst oder mit Ihrer Steuerberatung.
             </p>
           </div>
         </div>
