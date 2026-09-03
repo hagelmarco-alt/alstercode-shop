@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 
-import { Checkout, checkoutFromExtra } from "@/components/checkout";
+import { Checkout } from "@/components/checkout";
+import { checkoutFromExtra } from "@/lib/checkout";
 import { ExtraDisclaimer } from "@/components/extra-disclaimer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
