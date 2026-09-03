@@ -18,6 +18,9 @@ export function SiteHeader() {
           <Link href="/#pack" className="text-muted-foreground hover:text-foreground">
             Pack
           </Link>
+          <Link href="/#weitere-vorlagen" className="text-muted-foreground hover:text-foreground">
+            Vorlagen
+          </Link>
           <Link href="/kurztext" className="text-muted-foreground hover:text-foreground">
             Kurztext
           </Link>

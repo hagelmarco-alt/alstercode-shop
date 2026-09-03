@@ -18,13 +18,13 @@ export default function WiderrufPage() {
         bestätigen (§ 356 Abs. 5 BGB).
       </p>
       <p>
-        Beim Kleinunternehmer-Pack ist der Download der Dateien die Ausführung.
-        Die Zustimmung holt ALSTERCODE auf der{" "}
+        Beim Kleinunternehmer-Pack und bei den Extra-Vorlagen ist der Download
+        der Dateien die Ausführung. Die Zustimmung holt ALSTERCODE auf der{" "}
         <Link className="underline underline-offset-4" href="/kaufen">
           Kaufseite
         </Link>{" "}
-        per Pflichtfeld ein. Ohne diese Zustimmung werden Zahlung und Download
-        nicht freigegeben.
+        bzw. der jeweiligen Produktseite per Pflichtfeld ein. Ohne diese
+        Zustimmung werden Zahlung und Download nicht freigegeben.
       </p>
       <p>
         Der Kurztext ist eine Dienstleistung nach individuellem Briefing. Soweit

@@ -1,19 +1,68 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { Download, ExternalLink } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { formatEuro, paypalMeUrl, type ExtraProduct } from "@/lib/products";
 import { packFiles, site } from "@/lib/site";
 
-export function Checkout() {
+export type CheckoutFile = {
+  href: string;
+  label: string;
+  name: string;
+};
+
+export type CheckoutProduct = {
+  sku: string;
+  title: string;
+  priceEuro: number;
+  paypalUrl: string;
+  emailSubject: string;
+  files: readonly CheckoutFile[];
+};
+
+export const corePackCheckout: CheckoutProduct = {
+  sku: site.packSku,
+  title: "Kleinunternehmer-Pack",
+  priceEuro: 12,
+  paypalUrl: site.paypalPack,
+  emailSubject: "PayPal-Beleg Kleinunternehmer-Pack",
+  files: packFiles,
+};
+
+export function checkoutFromExtra(product: ExtraProduct): CheckoutProduct {
+  const filename = `${product.slug}.tar.gz`;
+  return {
+    sku: product.sku,
+    title: product.title,
+    priceEuro: product.priceEuro,
+    paypalUrl: paypalMeUrl(product.priceEuro),
+    emailSubject: `PayPal-Beleg ${product.sku}`,
+    files: [
+      {
+        href: `/api/extra/${product.slug}`,
+        label: "Gesamtpaket (tar.gz)",
+        name: filename,
+      },
+    ],
+  };
+}
+
+export function Checkout({
+  product = corePackCheckout,
+}: {
+  product?: CheckoutProduct;
+}) {
   const [agreed, setAgreed] = useState(false);
   const [openedPayPal, setOpenedPayPal] = useState(false);
+  const checkboxId = useId();
+  const priceLabel = formatEuro(product.priceEuro);
 
   function openPayPal() {
-    window.open(site.paypalPack, "_blank", "noopener,noreferrer");
+    window.open(product.paypalUrl, "_blank", "noopener,noreferrer");
     setOpenedPayPal(true);
   }
 
@@ -27,7 +76,8 @@ export function Checkout() {
         </li>
         <li>
           <span className="font-medium text-foreground">2. Zahlen.</span>{" "}
-          12,00 € über PayPal an {site.name}. Das Konto lautet paypal.me/alstercode.
+          {priceLabel} über PayPal an {site.name}. Das Konto lautet
+          paypal.me/alstercode.
         </li>
         <li>
           <span className="font-medium text-foreground">3. Herunterladen.</span>{" "}
@@ -45,12 +95,12 @@ export function Checkout() {
       <div className="rounded-xl border bg-card p-5">
         <div className="flex items-start gap-3">
           <Checkbox
-            id="widerruf"
+            id={checkboxId}
             checked={agreed}
             onCheckedChange={(value) => setAgreed(value === true)}
             className="mt-0.5"
           />
-          <Label htmlFor="widerruf" className="text-sm leading-6 font-normal">
+          <Label htmlFor={checkboxId} className="text-sm leading-6 font-normal">
             Ich stimme ausdrücklich zu, dass ALSTERCODE mit der Ausführung vor
             Ablauf der Widerrufsfrist beginnt, indem der Download der digitalen
             Vorlagen sofort bereitgestellt wird. Mir ist bekannt, dass ich
@@ -66,11 +116,11 @@ export function Checkout() {
           disabled={!agreed}
           onClick={openPayPal}
         >
-          12 € mit PayPal zahlen
+          {product.priceEuro} € mit PayPal zahlen
           <ExternalLink />
         </Button>
         <Button size="lg" variant="outline" className="h-11 px-5" asChild>
-          <a href={`mailto:${site.email}?subject=PayPal-Beleg Kleinunternehmer-Pack`}>
+          <a href={`mailto:${site.email}?subject=${encodeURIComponent(product.emailSubject)}`}>
             Beleg an {site.email}
           </a>
         </Button>
@@ -97,7 +147,7 @@ export function Checkout() {
             E-Mail.
           </p>
           <ul className="mt-5 grid gap-2 sm:grid-cols-2">
-            {packFiles.map((file) => (
+            {product.files.map((file) => (
               <li key={file.href}>
                 <Button variant="secondary" className="h-10 w-full justify-start" asChild>
                   <a href={file.href} download={file.name}>

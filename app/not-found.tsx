@@ -9,7 +9,8 @@ export default function NotFound() {
         Seite nicht gefunden
       </h1>
       <p className="mt-3 text-muted-foreground">
-        Diese Adresse gibt es hier nicht. Das Pack liegt auf der Startseite.
+        Diese Adresse gibt es hier nicht. Pack und Extra-Vorlagen liegen auf
+        der Startseite.
       </p>
       <Button className="mt-6" asChild>
         <Link href="/">Zur Startseite</Link>
